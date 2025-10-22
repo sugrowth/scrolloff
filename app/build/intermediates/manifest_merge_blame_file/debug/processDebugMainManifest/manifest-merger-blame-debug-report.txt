@@ -60,17 +60,17 @@
 37            </intent-filter>
 38        </activity>
 39        <activity
-39-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/aadfe11f65acbaba65e0e3c5d52df12e/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:23:9-25:39
-40            android:name="androidx.activity.ComponentActivity"
-40-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/aadfe11f65acbaba65e0e3c5d52df12e/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:24:13-63
+39-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f989de49f7d7a45fc1aaad8421d660e5/transformed/jetified-ui-tooling-release/AndroidManifest.xml:23:9-25:39
+40            android:name="androidx.compose.ui.tooling.PreviewActivity"
+40-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f989de49f7d7a45fc1aaad8421d660e5/transformed/jetified-ui-tooling-release/AndroidManifest.xml:24:13-71
 41            android:exported="true" />
-41-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/aadfe11f65acbaba65e0e3c5d52df12e/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:25:13-36
+41-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f989de49f7d7a45fc1aaad8421d660e5/transformed/jetified-ui-tooling-release/AndroidManifest.xml:25:13-36
 42        <activity
-42-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f989de49f7d7a45fc1aaad8421d660e5/transformed/jetified-ui-tooling-release/AndroidManifest.xml:23:9-25:39
-43            android:name="androidx.compose.ui.tooling.PreviewActivity"
-43-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f989de49f7d7a45fc1aaad8421d660e5/transformed/jetified-ui-tooling-release/AndroidManifest.xml:24:13-71
+42-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/aadfe11f65acbaba65e0e3c5d52df12e/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:23:9-25:39
+43            android:name="androidx.activity.ComponentActivity"
+43-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/aadfe11f65acbaba65e0e3c5d52df12e/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:24:13-63
 44            android:exported="true" />
-44-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f989de49f7d7a45fc1aaad8421d660e5/transformed/jetified-ui-tooling-release/AndroidManifest.xml:25:13-36
+44-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/aadfe11f65acbaba65e0e3c5d52df12e/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:25:13-36
 45
 46        <provider
 46-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/92cb0755b5422123a5d14881a5e63f03/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
