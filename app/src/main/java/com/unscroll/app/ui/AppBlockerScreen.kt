@@ -218,13 +218,6 @@ fun AppBlockerScreen(
 
                 item { RewardCard(uiState.rewardMinutes) }
                 item { AboutCard() }
-            } else {
-                Text(
-                    text = "Set custom lock durations and instant unlocks with Unscroll Pro.",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                )
             }
         }
     }

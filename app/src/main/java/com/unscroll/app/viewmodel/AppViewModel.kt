@@ -104,27 +104,37 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            val baselineFlow = combine(
+            val baseFlow = combine(
                 loadInstalledApps(),
                 blockerPreferences.blockedPackages,
                 blockerPreferences.temporaryAllowances,
                 blockerPreferences.activationLocks,
-                blockerPreferences.lastDisabled,
-                rewardRepository.rewardState
-            ) { apps, blocked, allowances, activationLocks, lastDisabled, rewards ->
-                lastDisabledMap = lastDisabled
+                blockerPreferences.lastDisabled
+            ) { apps, blocked, allowances, activationLocks, lastDisabled ->
+                CombinedSnapshot(
+                    apps = apps,
+                    blocked = blocked,
+                    allowances = allowances,
+                    activationLocks = activationLocks,
+                    lastDisabled = lastDisabled
+                )
+            }
+
+            val preparedFlow = combine(baseFlow, rewardRepository.rewardState) { baseSnapshot, rewards ->
+                lastDisabledMap = baseSnapshot.lastDisabled
+
                 val now = System.currentTimeMillis()
 
-                val activeAllowances = allowances.filterValues { it > now }
-                val expiredAllowances = allowances.filterValues { it <= now }.keys
+                val activeAllowances = baseSnapshot.allowances.filterValues { it > now }
+                val expiredAllowances = baseSnapshot.allowances.filterValues { it <= now }.keys
                 if (expiredAllowances.isNotEmpty()) {
                     viewModelScope.launch(Dispatchers.IO) {
                         expiredAllowances.forEach { blockerPreferences.clearTemporaryAllowance(it) }
                     }
                 }
 
-                val activeLocks = activationLocks.filterValues { it.lockUntilMillis > now }
-                val expiredLocks = activationLocks.filterValues { it.lockUntilMillis <= now }.keys
+                val activeLocks = baseSnapshot.activationLocks.filterValues { it.lockUntilMillis > now }
+                val expiredLocks = baseSnapshot.activationLocks.filterValues { it.lockUntilMillis <= now }.keys
                 if (expiredLocks.isNotEmpty()) {
                     viewModelScope.launch(Dispatchers.IO) {
                         expiredLocks.forEach { blockerPreferences.clearActivationLock(it) }
@@ -132,33 +142,37 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 currentActivationLocks = activeLocks
 
-                val toggles = apps.map { app ->
+                val toggles = baseSnapshot.apps.map { app ->
                     AppToggle(
                         app = app,
-                        isBlocked = blocked.contains(app.packageName),
+                        isBlocked = baseSnapshot.blocked.contains(app.packageName),
                         allowUntilMillis = activeAllowances[app.packageName],
                         lockInfo = activeLocks[app.packageName]
                     )
                 }.sortedWith(compareBy<AppToggle> { it.app.category.ordinal }
                     .thenBy { it.app.label.lowercase() })
 
-                toggles to rewards
+                PreparedState(
+                    toggles = toggles,
+                    blockedCount = toggles.count { it.isBlocked },
+                    rewardMinutes = rewards.formattedRewardMinutes()
+                )
             }
 
             combine(
-                baselineFlow,
+                preparedFlow,
                 overlayPermissionState,
                 accessibilityPermissionState,
                 blockerPreferences.landingCompleted
-            ) { (toggles, rewards), overlayGranted, accessibilityGranted, landingCompleted ->
+            ) { prepared, overlayGranted, accessibilityGranted, landingCompleted ->
                 AppUiState(
-                    apps = toggles,
+                    apps = prepared.toggles,
                     isLoading = false,
                     overlayGranted = overlayGranted,
                     accessibilityGranted = accessibilityGranted,
                     showLanding = !landingCompleted,
-                    blockedCount = toggles.count { it.isBlocked },
-                    rewardMinutes = rewards.formattedRewardMinutes()
+                    blockedCount = prepared.blockedCount,
+                    rewardMinutes = prepared.rewardMinutes
                 )
             }.collect { state ->
                 _uiState.value = state
@@ -216,7 +230,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 withContext(Dispatchers.IO) {
                     blockerPreferences.setBlocked(packageName, true)
                     blockerPreferences.setActivationLock(packageName, lockExpiry, graceExpiry)
-                    rewardRepository.recordActivity(now)
+                    rewardRepository.markBlocked(now)
                 }
                 currentActivationLocks = currentActivationLocks + (packageName to ActivationLockEntry(lockExpiry, graceExpiry))
                 _events.emit(AppUiEvent.LockEngaged(toggle.app.label, lockExpiry, lockDurationMinutes))
@@ -230,7 +244,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                     blockerPreferences.clearActivationLock(packageName)
                     blockerPreferences.setBlocked(packageName, false)
                     blockerPreferences.setLastDisabled(packageName, now)
-                    rewardRepository.markBlocked(now)
+                    rewardRepository.recordActivity(now)
                 }
                 currentActivationLocks = currentActivationLocks - packageName
                 lastDisabledMap = lastDisabledMap + (packageName to now)
@@ -246,6 +260,12 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun dismissLanding() {
         viewModelScope.launch(Dispatchers.IO) {
             blockerPreferences.markLandingCompleted()
+        }
+    }
+
+    fun requestEarlyUnlock(toggle: AppToggle) {
+        viewModelScope.launch {
+            _events.emit(AppUiEvent.ShowPaywall(toggle.app.label))
         }
     }
 
@@ -269,3 +289,17 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             category != AppCategory.OTHER && (category.matches(labelLower) || category.matches(packageLower))
         } ?: AppCategory.OTHER
 }
+
+private data class CombinedSnapshot(
+    val apps: List<InstalledApp>,
+    val blocked: Set<String>,
+    val allowances: Map<String, Long>,
+    val activationLocks: Map<String, ActivationLockEntry>,
+    val lastDisabled: Map<String, Long>
+)
+
+private data class PreparedState(
+    val toggles: List<AppToggle>,
+    val blockedCount: Int,
+    val rewardMinutes: Int
+)

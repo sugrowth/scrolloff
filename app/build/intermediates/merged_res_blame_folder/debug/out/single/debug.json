@@ -20,6 +20,10 @@
         "source": "com.unscroll.app-main-70:/mipmap/ic_launcher.xml"
     },
     {
+        "merged": "com.unscroll.app-merged_res-68:/drawable_ic_hourglass_logo.xml.flat",
+        "source": "com.unscroll.app-main-70:/drawable/ic_hourglass_logo.xml"
+    },
+    {
         "merged": "com.unscroll.app-merged_res-68:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.unscroll.app-main-70:/drawable/ic_launcher_foreground.xml"
     }

@@ -1,0 +1,11 @@
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/UnscrollApplication.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/data/AppBlockerPreferences.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/viewmodel/AppViewModel.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/service/AppBlockService.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/data/RewardRepository.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/ui/AppBlockerScreen.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/theme/Color.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/MainActivity.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/theme/Theme.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/ui/BlockOverlayActivity.kt
+/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/java/com/unscroll/app/theme/Type.kt
