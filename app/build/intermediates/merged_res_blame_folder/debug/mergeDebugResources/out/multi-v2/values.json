@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-65:/values/values.xml",
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values/values.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/7f8ac1b4eae276f526fd2ebf51473309/transformed/navigation-common-2.7.7/res/values/values.xml",

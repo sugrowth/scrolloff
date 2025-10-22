@@ -1,6 +1,7 @@
 package com.unscroll.app.ui
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.Settings
 import androidx.compose.foundation.Image
@@ -17,8 +18,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -40,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.unscroll.app.viewmodel.AppViewModel
 import com.unscroll.app.viewmodel.AppToggle
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBlockerScreen(
     viewModel: AppViewModel
@@ -144,7 +147,7 @@ private fun PermissionChip(
 private fun AppList(
     apps: List<AppToggle>,
     onToggle: (AppToggle, Boolean) -> Unit,
-    iconLoader: (String) -> android.graphics.drawable.Drawable?
+    iconLoader: (String) -> Drawable?
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -163,7 +166,7 @@ private fun AppList(
 private fun AppRow(
     toggle: AppToggle,
     onToggle: (AppToggle, Boolean) -> Unit,
-    iconLoader: (String) -> android.graphics.drawable.Drawable?
+    iconLoader: (String) -> Drawable?
 ) {
     val iconBitmap = iconLoader(toggle.app.packageName)?.toBitmap()
 

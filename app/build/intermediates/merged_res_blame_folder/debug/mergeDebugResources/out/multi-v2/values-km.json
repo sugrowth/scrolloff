@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-65:/values-km/values-km.xml",
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-km/values-km.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/2e05860b537fac88ea46e15882034c10/transformed/jetified-foundation-release/res/values-km/values-km.xml",

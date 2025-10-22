@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-65:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-w360dp-port-v13/values-w360dp-port-v13.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f9b7a3df76272549aaad5c9c89f4b022/transformed/material-1.12.0/res/values-w360dp-port-v13/values-w360dp-port-v13.xml",

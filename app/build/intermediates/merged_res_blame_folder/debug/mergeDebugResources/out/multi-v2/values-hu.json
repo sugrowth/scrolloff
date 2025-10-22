@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-65:/values-hu/values-hu.xml",
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-hu/values-hu.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/0ca836be83f32dd96b7e10a70baae16a/transformed/jetified-ui-release/res/values-hu/values-hu.xml",

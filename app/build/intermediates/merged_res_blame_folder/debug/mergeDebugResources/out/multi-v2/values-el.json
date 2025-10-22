@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-65:/values-el/values-el.xml",
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-el/values-el.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/c05d86976fefda07d91c42e6c4b1f9f9/transformed/jetified-material3-release/res/values-el/values-el.xml",

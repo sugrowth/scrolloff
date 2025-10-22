@@ -1,22 +1,26 @@
 [
     {
-        "merged": "com.unscroll.app-debug-67:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.unscroll.app-main-69:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.unscroll.app-debug-68:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.unscroll.app-main-70:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.unscroll.app-debug-67:/mipmap_ic_launcher.xml.flat",
-        "source": "com.unscroll.app-main-69:/mipmap/ic_launcher.xml"
+        "merged": "com.unscroll.app-debug-68:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.unscroll.app-main-70:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.unscroll.app-debug-67:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.unscroll.app-main-69:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.unscroll.app-debug-68:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.unscroll.app-main-70:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.unscroll.app-debug-67:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.unscroll.app-main-69:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.unscroll.app-debug-68:/mipmap_ic_launcher_round.xml.flat",
+        "source": "com.unscroll.app-main-70:/mipmap/ic_launcher_round.xml"
     },
     {
-        "merged": "com.unscroll.app-debug-67:/mipmap_ic_launcher_round.xml.flat",
-        "source": "com.unscroll.app-main-69:/mipmap/ic_launcher_round.xml"
+        "merged": "com.unscroll.app-debug-68:/xml_app_blocker_service_config.xml.flat",
+        "source": "com.unscroll.app-main-70:/xml/app_blocker_service_config.xml"
+    },
+    {
+        "merged": "com.unscroll.app-debug-68:/mipmap_ic_launcher.xml.flat",
+        "source": "com.unscroll.app-main-70:/mipmap/ic_launcher.xml"
     }
 ]

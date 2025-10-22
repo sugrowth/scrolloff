@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-65:/values-sq/values-sq.xml",
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-sq/values-sq.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/bde4baa850aa9162317e26231cb99e3b/transformed/core-1.13.1/res/values-sq/values-sq.xml",
