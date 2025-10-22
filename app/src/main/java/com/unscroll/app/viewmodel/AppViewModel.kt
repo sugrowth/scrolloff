@@ -1,9 +1,9 @@
 package com.unscroll.app.viewmodel
 
 import android.app.Application
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.unscroll.app.data.appBlockerPreferences
@@ -60,16 +60,22 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun loadInstalledApps() = flow {
         val apps = withContext(Dispatchers.IO) {
-            val launchIntent = Intent(Intent.ACTION_MAIN).apply {
-                addCategory(Intent.CATEGORY_LAUNCHER)
+            val installedApps = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                packageManager.getInstalledApplications(PackageManager.ApplicationInfoFlags.of(0))
+            } else {
+                @Suppress("DEPRECATION")
+                packageManager.getInstalledApplications(0)
             }
-            val resolveInfos = packageManager.queryIntentActivities(launchIntent, PackageManager.MATCH_ALL)
-            resolveInfos
+            installedApps
+                .filter { info ->
+                    info.packageName != context.packageName &&
+                        packageManager.getLaunchIntentForPackage(info.packageName) != null
+                }
                 .map { info ->
-                    val label = info.loadLabel(packageManager)?.toString() ?: info.activityInfo.packageName
+                    val label = packageManager.getApplicationLabel(info)?.toString().orEmpty()
                     InstalledApp(
-                        packageName = info.activityInfo.packageName,
-                        label = label
+                        packageName = info.packageName,
+                        label = label.ifBlank { info.packageName }
                     )
                 }
                 .distinctBy { it.packageName }
