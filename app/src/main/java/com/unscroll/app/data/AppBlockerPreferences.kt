@@ -15,6 +15,12 @@ private val Context.blockerDataStore by preferencesDataStore(name = "app_blocker
 private val BLOCKED_PACKAGES_KEY = stringSetPreferencesKey("blocked_packages")
 private val TEMP_ALLOWANCES_KEY = stringSetPreferencesKey("temporary_allowances")
 private val ACTIVATION_LOCKS_KEY = stringSetPreferencesKey("activation_locks")
+private const val LEGACY_GRACE_WINDOW_MILLIS = 5 * 60_000L
+
+data class ActivationLockEntry(
+    val lockUntilMillis: Long,
+    val graceUntilMillis: Long
+)
 
 class AppBlockerPreferences(private val context: Context) {
 
@@ -59,7 +65,7 @@ class AppBlockerPreferences(private val context: Context) {
                 ?: emptyMap()
         }
 
-    val activationLocks: Flow<Map<String, Long>> = context.blockerDataStore
+    val activationLocks: Flow<Map<String, ActivationLockEntry>> = context.blockerDataStore
         .data
         .catch { exception ->
             if (exception is IOException) {
@@ -72,15 +78,23 @@ class AppBlockerPreferences(private val context: Context) {
             preferences[ACTIVATION_LOCKS_KEY]
                 ?.mapNotNull { entry ->
                     val parts = entry.split("|")
-                    if (parts.size == 2) {
-                        val expiry = parts[1].toLongOrNull()
-                        if (expiry != null) {
-                            parts[0] to expiry
-                        } else {
-                            null
+                    when (parts.size) {
+                        2 -> {
+                            val expiry = parts[1].toLongOrNull() ?: return@mapNotNull null
+                            parts[0] to ActivationLockEntry(
+                                lockUntilMillis = expiry,
+                                graceUntilMillis = expiry - LEGACY_GRACE_WINDOW_MILLIS
+                            )
                         }
-                    } else {
-                        null
+                        3 -> {
+                            val lockUntil = parts[1].toLongOrNull() ?: return@mapNotNull null
+                            val graceUntil = parts[2].toLongOrNull() ?: return@mapNotNull null
+                            parts[0] to ActivationLockEntry(
+                                lockUntilMillis = lockUntil,
+                                graceUntilMillis = graceUntil
+                            )
+                        }
+                        else -> null
                     }
                 }
                 ?.toMap()
@@ -117,11 +131,11 @@ class AppBlockerPreferences(private val context: Context) {
         }
     }
 
-    suspend fun setActivationLock(packageName: String, expiryMillis: Long) {
+    suspend fun setActivationLock(packageName: String, lockUntilMillis: Long, graceUntilMillis: Long) {
         context.blockerDataStore.edit { preferences ->
             val entries = preferences[ACTIVATION_LOCKS_KEY]?.toMutableSet() ?: mutableSetOf()
             entries.removeAll { it.startsWith("$packageName|") }
-            entries.add("$packageName|$expiryMillis")
+            entries.add("$packageName|$lockUntilMillis|$graceUntilMillis")
             preferences[ACTIVATION_LOCKS_KEY] = entries
         }
     }

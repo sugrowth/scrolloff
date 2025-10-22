@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.SystemClock
 import android.view.accessibility.AccessibilityEvent
+import com.unscroll.app.data.ActivationLockEntry
 import com.unscroll.app.data.appBlockerPreferences
 import com.unscroll.app.ui.BlockOverlayActivity
 import kotlinx.coroutines.async
@@ -21,10 +22,11 @@ class AppBlockService : AccessibilityService() {
         if (packageName == applicationContext.packageName) return
 
         val preferences = applicationContext.appBlockerPreferences()
-        val (blockedPackages, allowances) = runBlocking {
+        val (blockedPackages, allowances, activationLocks) = runBlocking {
             val blockedDeferred = async { preferences.blockedPackages.first() }
             val allowancesDeferred = async { preferences.temporaryAllowances.first() }
-            blockedDeferred.await() to allowancesDeferred.await()
+            val locksDeferred = async { preferences.activationLocks.first() }
+            Triple(blockedDeferred.await(), allowancesDeferred.await(), locksDeferred.await())
         }
 
         val allowanceExpiry = allowances[packageName]
@@ -35,6 +37,8 @@ class AppBlockService : AccessibilityService() {
                 runBlocking { preferences.clearTemporaryAllowance(packageName) }
             }
         }
+
+        val lockInfo: ActivationLockEntry? = activationLocks[packageName]
 
         if (!blockedPackages.contains(packageName)) {
             if (lastBlockedPackage == packageName) {
@@ -67,6 +71,9 @@ class AppBlockService : AccessibilityService() {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
             putExtra(BlockOverlayActivity.EXTRA_APP_LABEL, label)
             putExtra(BlockOverlayActivity.EXTRA_PACKAGE_NAME, packageName)
+            lockInfo?.let {
+                putExtra(BlockOverlayActivity.EXTRA_LOCK_UNTIL, it.lockUntilMillis)
+            }
         }
         startActivity(intent)
     }

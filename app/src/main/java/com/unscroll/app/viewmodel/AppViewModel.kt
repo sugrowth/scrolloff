@@ -8,6 +8,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.unscroll.app.data.ActivationLockEntry
 import com.unscroll.app.data.appBlockerPreferences
 import com.unscroll.app.service.AppBlockService
 import kotlinx.coroutines.Dispatchers
@@ -23,38 +24,62 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.jvm.Volatile
 
+private const val FREE_PLAN_MAX_BLOCKED_APPS = 5
+private const val BASE_LOCK_MINUTES = 240 // 4 hours
+private const val GRACE_WINDOW_MINUTES = 5
+private val GRACE_WINDOW_MILLIS = GRACE_WINDOW_MINUTES * 60_000L
+
+enum class AppCategory(
+    val displayName: String,
+    val lockBonusMinutes: Int,
+    private val keywords: List<String>
+) {
+    SOCIAL("Social", 0, listOf("instagram", "facebook", "whatsapp", "snap", "reddit", "twitter", "x", "telegram")),
+    ENTERTAINMENT("Entertainment", 30, listOf("youtube", "netflix", "prime", "spotify", "music", "tiktok", "disney", "hulu")),
+    GAMING("Gaming", 60, listOf("game", "clash", "royale", "pubg", "genshin", "freefire", "callofduty", "roblox")),
+    SHOPPING("Shopping", 30, listOf("amazon", "flipkart", "shop", "myntra", "nykaa", "walmart")),
+    NEWS("News", 15, listOf("news", "cnn", "bbc", "nyt", "inshorts", "guardian")),
+    PRODUCTIVITY("Productivity", 0, listOf("calendar", "notes", "drive", "docs")),
+    OTHER("Other", 0, emptyList());
+
+    fun matches(target: String): Boolean =
+        keywords.any { target.contains(it) }
+}
+
 data class InstalledApp(
     val packageName: String,
-    val label: String
+    val label: String,
+    val category: AppCategory,
+    val lockDurationMinutes: Int
 )
 
 data class AppToggle(
     val app: InstalledApp,
     val isBlocked: Boolean,
     val allowUntilMillis: Long?,
-    val lockUntilMillis: Long?
-)
+    val lockInfo: ActivationLockEntry?
+) {
+    val lockUntilMillis: Long? = lockInfo?.lockUntilMillis
+    val graceUntilMillis: Long? = lockInfo?.graceUntilMillis
+}
 
 data class AppUiState(
     val apps: List<AppToggle> = emptyList(),
     val isLoading: Boolean = true,
     val overlayGranted: Boolean = false,
     val accessibilityGranted: Boolean = false,
-    val showLanding: Boolean = true
+    val showLanding: Boolean = true,
+    val blockedCount: Int = 0
 )
 
 sealed interface AppUiEvent {
-    data class LockEngaged(val appLabel: String, val unlockAtMillis: Long) : AppUiEvent
+    data class LockEngaged(val appLabel: String, val unlockAtMillis: Long, val durationMinutes: Int) : AppUiEvent
     data class ToggleLocked(val appLabel: String, val unlockAtMillis: Long) : AppUiEvent
     data class ShowPaywall(val appLabel: String) : AppUiEvent
+    data class FreeLimitReached(val limit: Int) : AppUiEvent
 }
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
-
-    companion object {
-        private const val LOCK_DURATION_MINUTES = 30
-        private val LOCK_DURATION_MILLIS = LOCK_DURATION_MINUTES * 60_000L
-    }
 
     private val context = getApplication<Application>()
     private val blockerPreferences = context.appBlockerPreferences()
@@ -71,7 +96,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     val events: SharedFlow<AppUiEvent> = _events.asSharedFlow()
 
     @Volatile
-    private var currentActivationLocks: Map<String, Long> = emptyMap()
+    private var currentActivationLocks: Map<String, ActivationLockEntry> = emptyMap()
 
     init {
         viewModelScope.launch {
@@ -91,8 +116,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                     }
                 }
 
-                val activeLocks = activationLocks.filterValues { it > now }
-                val expiredLocks = activationLocks.filterValues { it <= now }.keys
+                val activeLocks = activationLocks.filterValues { it.lockUntilMillis > now }
+                val expiredLocks = activationLocks.filterValues { it.lockUntilMillis <= now }.keys
                 if (expiredLocks.isNotEmpty()) {
                     viewModelScope.launch(Dispatchers.IO) {
                         expiredLocks.forEach { blockerPreferences.clearActivationLock(it) }
@@ -105,9 +130,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                         app = app,
                         isBlocked = blocked.contains(app.packageName),
                         allowUntilMillis = activeAllowances[app.packageName],
-                        lockUntilMillis = activeLocks[app.packageName]
+                        lockInfo = activeLocks[app.packageName]
                     )
-                }.sortedBy { it.app.label.lowercase() }
+                }.sortedWith(compareBy<AppToggle> { it.app.category.ordinal }
+                    .thenBy { it.app.label.lowercase() })
             }
 
             combine(
@@ -121,7 +147,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                     isLoading = false,
                     overlayGranted = overlayGranted,
                     accessibilityGranted = accessibilityGranted,
-                    showLanding = showLanding
+                    showLanding = showLanding,
+                    blockedCount = toggles.count { it.isBlocked }
                 )
             }.collect { state ->
                 _uiState.value = state
@@ -144,9 +171,15 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 .map { info ->
                     val label = packageManager.getApplicationLabel(info)?.toString().orEmpty()
+                    val labelLower = label.lowercase()
+                    val packageLower = info.packageName.lowercase()
+                    val category = categorizeApp(labelLower, packageLower)
+                    val lockMinutes = BASE_LOCK_MINUTES + category.lockBonusMinutes
                     InstalledApp(
                         packageName = info.packageName,
-                        label = label.ifBlank { info.packageName }
+                        label = label.ifBlank { info.packageName },
+                        category = category,
+                        lockDurationMinutes = lockMinutes
                     )
                 }
                 .distinctBy { it.packageName }
@@ -155,22 +188,35 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onToggleChanged(toggle: AppToggle, shouldBlock: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val packageName = toggle.app.packageName
             val now = System.currentTimeMillis()
             if (shouldBlock) {
-                blockerPreferences.setBlocked(packageName, true)
-                val lockExpiry = now + LOCK_DURATION_MILLIS
-                blockerPreferences.setActivationLock(packageName, lockExpiry)
-                _events.emit(AppUiEvent.LockEngaged(toggle.app.label, lockExpiry))
+                if (!toggle.isBlocked) {
+                    val blockedCount = uiState.value.blockedCount
+                    if (blockedCount >= FREE_PLAN_MAX_BLOCKED_APPS) {
+                        _events.emit(AppUiEvent.FreeLimitReached(FREE_PLAN_MAX_BLOCKED_APPS))
+                        return@launch
+                    }
+                }
+                val lockDurationMinutes = toggle.app.lockDurationMinutes
+                val lockExpiry = now + lockDurationMinutes * 60_000L
+                val graceExpiry = now + GRACE_WINDOW_MILLIS
+                withContext(Dispatchers.IO) {
+                    blockerPreferences.setBlocked(packageName, true)
+                    blockerPreferences.setActivationLock(packageName, lockExpiry, graceExpiry)
+                }
+                _events.emit(AppUiEvent.LockEngaged(toggle.app.label, lockExpiry, lockDurationMinutes))
             } else {
-                val lockUntil = currentActivationLocks[packageName]
-                if (lockUntil != null && lockUntil > now) {
-                    _events.emit(AppUiEvent.ToggleLocked(toggle.app.label, lockUntil))
+                val lockInfo = currentActivationLocks[packageName]
+                if (lockInfo != null && lockInfo.graceUntilMillis < now) {
+                    _events.emit(AppUiEvent.ToggleLocked(toggle.app.label, lockInfo.lockUntilMillis))
                     return@launch
                 }
-                blockerPreferences.clearActivationLock(packageName)
-                blockerPreferences.setBlocked(packageName, false)
+                withContext(Dispatchers.IO) {
+                    blockerPreferences.clearActivationLock(packageName)
+                    blockerPreferences.setBlocked(packageName, false)
+                }
             }
         }
     }
@@ -190,11 +236,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         landingState.value = false
     }
 
-    fun getAppIcon(packageName: String): Drawable? {
-        return runCatching {
-            packageManager.getApplicationIcon(packageName)
-        }.getOrNull()
-    }
+    fun getAppIcon(packageName: String): Drawable? =
+        runCatching { packageManager.getApplicationIcon(packageName) }.getOrNull()
 
     private fun checkOverlayPermission(): Boolean =
         Settings.canDrawOverlays(context)
@@ -207,4 +250,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         ) ?: return false
         return enabledServices.split(':').any { it.equals(expectedComponent, ignoreCase = true) }
     }
+
+    private fun categorizeApp(labelLower: String, packageLower: String): AppCategory =
+        AppCategory.values().firstOrNull { category ->
+            category != AppCategory.OTHER && (category.matches(labelLower) || category.matches(packageLower))
+        } ?: AppCategory.OTHER
 }

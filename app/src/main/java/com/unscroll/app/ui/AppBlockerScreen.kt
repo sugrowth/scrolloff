@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -49,7 +50,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.wrapContentSize
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -60,6 +60,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.unscroll.app.R
+import com.unscroll.app.viewmodel.AppCategory
 import com.unscroll.app.viewmodel.AppToggle
 import com.unscroll.app.viewmodel.AppUiEvent
 import com.unscroll.app.viewmodel.AppViewModel
@@ -86,7 +87,7 @@ fun AppBlockerScreen(
             when (event) {
                 is AppUiEvent.LockEngaged -> {
                     snackbarHostState.showSnackbar(
-                        message = "${event.appLabel} locked for 30 minutes (until ${formatTime(event.unlockAtMillis)})."
+                        message = "${event.appLabel} locked for ${formatDuration(event.durationMinutes)} (until ${formatTime(event.unlockAtMillis)})."
                     )
                 }
                 is AppUiEvent.ToggleLocked -> {
@@ -97,6 +98,11 @@ fun AppBlockerScreen(
                 is AppUiEvent.ShowPaywall -> {
                     snackbarHostState.showSnackbar(
                         message = "${event.appLabel} early unlock is part of the upcoming Pro plan."
+                    )
+                }
+                is AppUiEvent.FreeLimitReached -> {
+                    snackbarHostState.showSnackbar(
+                        message = "Free plan can protect up to ${event.limit} apps. Upgrade to Pro for more."
                     )
                 }
             }
@@ -176,7 +182,7 @@ fun AppBlockerScreen(
 
                 item {
                     Text(
-                        text = "Protected apps",
+                        text = "Protected apps by priority",
                         style = MaterialTheme.typography.titleMedium.copy(
                             color = Color.White,
                             fontWeight = FontWeight.SemiBold
@@ -189,17 +195,29 @@ fun AppBlockerScreen(
                 } else if (uiState.apps.isEmpty()) {
                     item { EmptyStateCard() }
                 } else {
-                    items(uiState.apps, key = { it.app.packageName }) { toggle ->
-                        AppRow(
-                            toggle = toggle,
-                            onToggle = { checked ->
-                                viewModel.onToggleChanged(toggle, checked)
-                            },
-                            onEarlyUnlock = { viewModel.requestEarlyUnlock(toggle) },
-                            iconLoader = { packageName ->
-                                viewModel.getAppIcon(packageName)
+                    val grouped = uiState.apps.groupBy { it.app.category }
+                    AppCategory.values().forEach { category ->
+                        val toggles = grouped[category].orEmpty()
+                        if (toggles.isNotEmpty()) {
+                            item {
+                                CategoryHeader(
+                                    title = category.displayName,
+                                    subtitle = "Typical lock ${formatDuration(toggles.first().app.lockDurationMinutes)}"
+                                )
                             }
-                        )
+                            items(toggles, key = { it.app.packageName }) { toggle ->
+                                AppRow(
+                                    toggle = toggle,
+                                    onToggle = { checked ->
+                                        viewModel.onToggleChanged(toggle, checked)
+                                    },
+                                    onEarlyUnlock = { viewModel.requestEarlyUnlock(toggle) },
+                                    iconLoader = { packageName ->
+                                        viewModel.getAppIcon(packageName)
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -392,11 +410,11 @@ private fun InfoCard() {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "When you enable a toggle, it stays active for 30 minutes.",
+                text = "Free plan protects up to 5 apps. Locks last 4–6 hours depending on the category.",
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
             )
             Text(
-                text = "Need to turn it off sooner? Early unlock will require an upcoming Unscroll Pro upgrade.",
+                text = "Need to turn something off sooner? You have a 5-minute grace window after enabling. Beyond that, early unlock will require the upcoming Unscroll Pro upgrade.",
                 style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
             )
         }
@@ -450,15 +468,44 @@ private fun EmptyStateCard() {
 }
 
 @Composable
+private fun CategoryHeader(
+    title: String,
+    subtitle: String
+) {
+    Column(
+        modifier = Modifier.padding(top = 8.dp, bottom = 4.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleSmall.copy(
+                color = Color.White,
+                fontWeight = FontWeight.SemiBold
+            )
+        )
+        Text(
+            text = subtitle,
+            style = MaterialTheme.typography.labelMedium.copy(
+                color = Color.White.copy(alpha = 0.8f)
+            )
+        )
+    }
+}
+
+@Composable
 private fun AppRow(
     toggle: AppToggle,
     onToggle: (Boolean) -> Unit,
     onEarlyUnlock: () -> Unit,
     iconLoader: (String) -> Drawable?
 ) {
+    val now = System.currentTimeMillis()
     val iconBitmap = iconLoader(toggle.app.packageName)?.toBitmap()
-    val allowUntil = toggle.allowUntilMillis?.takeIf { it > System.currentTimeMillis() }
-    val lockUntil = toggle.lockUntilMillis?.takeIf { it > System.currentTimeMillis() }
+    val allowUntil = toggle.allowUntilMillis?.takeIf { it > now }
+    val lockInfo = toggle.lockInfo
+    val lockUntil = lockInfo?.lockUntilMillis?.takeIf { it > now }
+    val isInGraceWindow = lockInfo?.let { now <= it.graceUntilMillis } ?: false
+    val switchEnabled = lockInfo == null || isInGraceWindow
     val allowanceText = allowUntil?.let { formatTime(it) }
     val lockText = lockUntil?.let { formatTime(it) }
 
@@ -495,15 +542,17 @@ private fun AppRow(
                         contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
                         shape = CircleShape
                     ) {
-                        Text(
-                            text = toggle.app.label.firstOrNull()?.uppercase() ?: "?",
+                        Box(
                             modifier = Modifier
-                                .width(48.dp)
-                                .height(48.dp)
-                                .wrapContentSize(Alignment.Center),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+                                .size(48.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = toggle.app.label.firstOrNull()?.uppercase() ?: "?",
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
                 }
 
@@ -523,12 +572,34 @@ private fun AppRow(
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        AssistChip(
+                            onClick = {},
+                            enabled = false,
+                            label = { Text(toggle.app.category.displayName) },
+                            colors = AssistChipDefaults.assistChipColors(
+                                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                labelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                                disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                                disabledLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        )
+                        Text(
+                            text = "${formatDuration(toggle.app.lockDurationMinutes)} lock",
+                            style = MaterialTheme.typography.labelMedium.copy(
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        )
+                    }
                 }
 
                 Switch(
                     checked = toggle.isBlocked,
                     onCheckedChange = onToggle,
-                    enabled = lockUntil == null,
+                    enabled = switchEnabled,
                     colors = SwitchDefaults.colors(
                         checkedThumbColor = MaterialTheme.colorScheme.primary,
                         checkedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.35f)
@@ -551,6 +622,20 @@ private fun AppRow(
             }
 
             if (lockUntil != null) {
+                if (isInGraceWindow) {
+                    val graceText = lockInfo?.graceUntilMillis?.let { formatTime(it) } ?: "soon"
+                    Surface(
+                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        shape = CircleShape
+                    ) {
+                        Text(
+                            text = "Grace window active — adjust before $graceText",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+                        )
+                    }
+                }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -619,4 +704,14 @@ private fun formatTime(expiryMillis: Long): String {
     val zoned = instant.atZone(ZoneId.systemDefault())
     val formatter = DateTimeFormatter.ofPattern("h:mm a", Locale.getDefault())
     return formatter.format(zoned)
+}
+
+private fun formatDuration(minutes: Int): String {
+    val hours = minutes / 60
+    val remainingMinutes = minutes % 60
+    return if (hours > 0) {
+        if (remainingMinutes > 0) "${hours}h ${remainingMinutes}m" else "${hours}h"
+    } else {
+        "${remainingMinutes}m"
+    }
 }

@@ -37,6 +37,10 @@ import androidx.compose.ui.unit.sp
 import com.unscroll.app.data.appBlockerPreferences
 import com.unscroll.app.theme.UnscrollTheme
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class BlockOverlayActivity : ComponentActivity() {
 
@@ -50,6 +54,7 @@ class BlockOverlayActivity : ComponentActivity() {
             return
         }
         val blockedAppLabel = intent.getStringExtra(EXTRA_APP_LABEL) ?: "This app"
+        val lockUntilMillis = intent.getLongExtra(EXTRA_LOCK_UNTIL, -1L).takeIf { it > 0 }
 
         setContent {
             UnscrollTheme {
@@ -92,6 +97,14 @@ class BlockOverlayActivity : ComponentActivity() {
                                 style = MaterialTheme.typography.bodyLarge,
                                 textAlign = TextAlign.Center
                             )
+                            lockUntilMillis?.let { expiry ->
+                                Text(
+                                    text = "Scheduled unlock: ${formatTime(expiry)}",
+                                    color = Color.White.copy(alpha = 0.7f),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
                         }
 
                         Column(
@@ -201,5 +214,13 @@ class BlockOverlayActivity : ComponentActivity() {
     companion object {
         const val EXTRA_APP_LABEL = "extra_app_label"
         const val EXTRA_PACKAGE_NAME = "extra_package_name"
+        const val EXTRA_LOCK_UNTIL = "extra_lock_until"
     }
+}
+
+private fun formatTime(epochMillis: Long): String {
+    val instant = Instant.ofEpochMilli(epochMillis)
+    val zoned = instant.atZone(ZoneId.systemDefault())
+    val formatter = DateTimeFormatter.ofPattern("h:mm a", Locale.getDefault())
+    return formatter.format(zoned)
 }
