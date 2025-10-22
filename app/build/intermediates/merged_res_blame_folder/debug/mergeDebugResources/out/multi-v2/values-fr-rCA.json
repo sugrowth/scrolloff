@@ -4,7 +4,7 @@
             "outputFile": "com.unscroll.app-mergeDebugResources-65:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
-                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b8cef7bd6063f971e30df3d583e41381/transformed/appcompat-1.6.1/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/bff149498e84a43ef7b544f1eefbfc56/transformed/appcompat-1.6.1/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/62f310291f65332169d8dfac18e12329/transformed/core-1.13.1/res/values-fr-rCA/values-fr-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,354,456,560,664,778",
-                        "endColumns": "97,101,98,101,103,103,113,100",
-                        "endOffsets": "148,250,349,451,555,659,773,874"
-                    },
-                    "to": {
-                        "startLines": "38,39,40,41,42,43,44,186",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "3578,3676,3778,3877,3979,4083,4187,17777",
-                        "endColumns": "97,101,98,101,103,103,113,100",
-                        "endOffsets": "3671,3773,3872,3974,4078,4182,4296,17873"
-                    }
-                },
-                {
-                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/d200526839d74dfba202eb11bc6cfee4/transformed/jetified-material3-release/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/c05d86976fefda07d91c42e6c4b1f9f9/transformed/jetified-material3-release/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f1da11059654f5ab1d7db6a38e168ec6/transformed/jetified-ui-release/res/values-fr-rCA/values-fr-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,204,292,390,496,583,663,757,849,936,1007,1075,1156,1241,1317,1396,1465",
-                        "endColumns": "98,87,97,105,86,79,93,91,86,70,67,80,84,75,78,68,121",
-                        "endOffsets": "199,287,385,491,578,658,752,844,931,1002,1070,1151,1236,1312,1391,1460,1582"
-                    },
-                    "to": {
-                        "startLines": "48,49,50,51,52,57,58,174,175,176,177,179,180,184,187,188,189",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "4608,4707,4795,4893,4999,5394,5474,16796,16888,16975,17046,17203,17284,17620,17878,17957,18026",
-                        "endColumns": "98,87,97,105,86,79,93,91,86,70,67,80,84,75,78,68,121",
-                        "endOffsets": "4702,4790,4888,4994,5081,5469,5563,16883,16970,17041,17109,17279,17364,17691,17952,18021,18143"
-                    }
-                },
-                {
-                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/a77866c90783755007c8a6cdd3bc6b60/transformed/jetified-foundation-release/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/2e05860b537fac88ea46e15882034c10/transformed/jetified-foundation-release/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -89,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/7f17c73595c7a6f9a60058d40a0cc67b/transformed/material-1.12.0/res/values-fr-rCA/values-fr-rCA.xml",
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f9b7a3df76272549aaad5c9c89f4b022/transformed/material-1.12.0/res/values-fr-rCA/values-fr-rCA.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -105,6 +71,40 @@
                         "endLines": "5,33,34,35,36,37,45,46,47,53,54,55,56,59,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,178,182,183,185",
                         "endColumns": "12,106,107,81,100,96,99,121,84,64,65,96,79,61,91,66,73,60,78,63,53,115,58,61,53,81,128,91,74,94,80,83,143,78,80,146,92,78,54,50,65,78,80,70,79,71,77,74,71,110,96,76,97,97,77,80,99,56,83,65,82,86,61,63,62,75,101,106,96,105,58,54,88,86,76,80",
                         "endOffsets": "328,3185,3293,3375,3476,3573,4396,4518,4603,5146,5212,5309,5389,5625,12152,12219,12293,12354,12433,12497,12551,12667,12726,12788,12842,12924,13053,13145,13220,13315,13396,13480,13624,13703,13784,13931,14024,14103,14158,14209,14275,14354,14435,14506,14586,14658,14736,14811,14883,14994,15091,15168,15266,15364,15442,15523,15623,15680,15764,15830,15913,16000,16062,16126,16189,16265,16367,16474,16571,16677,16736,16791,17198,17538,17615,17772"
+                    }
+                },
+                {
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/0ca836be83f32dd96b7e10a70baae16a/transformed/jetified-ui-release/res/values-fr-rCA/values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,204,292,390,496,583,663,757,849,936,1007,1075,1156,1241,1317,1396,1465",
+                        "endColumns": "98,87,97,105,86,79,93,91,86,70,67,80,84,75,78,68,121",
+                        "endOffsets": "199,287,385,491,578,658,752,844,931,1002,1070,1151,1236,1312,1391,1460,1582"
+                    },
+                    "to": {
+                        "startLines": "48,49,50,51,52,57,58,174,175,176,177,179,180,184,187,188,189",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "4608,4707,4795,4893,4999,5394,5474,16796,16888,16975,17046,17203,17284,17620,17878,17957,18026",
+                        "endColumns": "98,87,97,105,86,79,93,91,86,70,67,80,84,75,78,68,121",
+                        "endOffsets": "4702,4790,4888,4994,5081,5469,5563,16883,16970,17041,17109,17279,17364,17691,17952,18021,18143"
+                    }
+                },
+                {
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/bde4baa850aa9162317e26231cb99e3b/transformed/core-1.13.1/res/values-fr-rCA/values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,354,456,560,664,778",
+                        "endColumns": "97,101,98,101,103,103,113,100",
+                        "endOffsets": "148,250,349,451,555,659,773,874"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41,42,43,44,186",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "3578,3676,3778,3877,3979,4083,4187,17777",
+                        "endColumns": "97,101,98,101,103,103,113,100",
+                        "endOffsets": "3671,3773,3872,3974,4078,4182,4296,17873"
                     }
                 }
             ]
