@@ -268,7 +268,7 @@ private fun LandingScreen(
                     color = Color.White.copy(alpha = 0.08f)
                 ) {
                     Image(
-                        painter = painterResource(id = R.mipmap.ic_launcher),
+                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
                         contentDescription = "Unscroll",
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.padding(16.dp)
