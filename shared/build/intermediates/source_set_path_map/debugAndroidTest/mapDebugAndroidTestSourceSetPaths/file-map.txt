@@ -1,0 +1,9 @@
+com.unscroll.shared.test.shared-jetified-datastore-release-0 /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/44d9fb654d1fcfd6c6b38527d2afe865/transformed/jetified-datastore-release/res
+com.unscroll.shared.test.shared-jetified-datastore-core-release-1 /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/7608a785892849b11d334944c123bcab/transformed/jetified-datastore-core-release/res
+com.unscroll.shared.test.shared-jetified-datastore-preferences-release-2 /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f7d7512aca585ecbf9428d225e382adc/transformed/jetified-datastore-preferences-release/res
+com.unscroll.shared.test.shared-androidTest-3 /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/shared/build/generated/res/resValues/androidTest/debug
+com.unscroll.shared.test.shared-updated_navigation_xml-4 /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/shared/build/generated/updated_navigation_xml/debugAndroidTest
+com.unscroll.shared.test.shared-mergeDebugAndroidTestResources-5 /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/shared/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.unscroll.shared.test.shared-mergeDebugAndroidTestResources-6 /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/shared/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.unscroll.shared.test.shared-debugAndroidTest-7 /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/shared/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
+com.unscroll.shared.test.shared-debug-8 /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/shared/build/intermediates/packaged_res/debug/packageDebugResources

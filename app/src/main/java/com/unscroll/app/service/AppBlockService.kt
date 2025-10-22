@@ -9,6 +9,7 @@ import android.os.SystemClock
 import android.view.accessibility.AccessibilityEvent
 import com.unscroll.app.data.appBlockerPreferences
 import com.unscroll.app.ui.BlockOverlayActivity
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -19,14 +20,23 @@ class AppBlockService : AccessibilityService() {
         val packageName = event.packageName?.toString() ?: return
         if (packageName == applicationContext.packageName) return
 
-        val isBlocked = runBlocking {
-            applicationContext.appBlockerPreferences()
-                .blockedPackages
-                .first()
-                .contains(packageName)
+        val preferences = applicationContext.appBlockerPreferences()
+        val (blockedPackages, allowances) = runBlocking {
+            val blockedDeferred = async { preferences.blockedPackages.first() }
+            val allowancesDeferred = async { preferences.temporaryAllowances.first() }
+            blockedDeferred.await() to allowancesDeferred.await()
         }
 
-        if (!isBlocked) {
+        val allowanceExpiry = allowances[packageName]
+        if (allowanceExpiry != null) {
+            if (allowanceExpiry > System.currentTimeMillis()) {
+                return
+            } else {
+                runBlocking { preferences.clearTemporaryAllowance(packageName) }
+            }
+        }
+
+        if (!blockedPackages.contains(packageName)) {
             if (lastBlockedPackage == packageName) {
                 lastBlockedPackage = null
                 lastShownTimestamp = 0L
@@ -56,6 +66,7 @@ class AppBlockService : AccessibilityService() {
         val intent = Intent(this, BlockOverlayActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
             putExtra(BlockOverlayActivity.EXTRA_APP_LABEL, label)
+            putExtra(BlockOverlayActivity.EXTRA_PACKAGE_NAME, packageName)
         }
         startActivity(intent)
     }

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-47:12
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-54:12
+INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-54:12
+INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-54:12
+INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:1-54:12
 MERGED from [com.google.android.material:material:1.12.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f9b7a3df76272549aaad5c9c89f4b022/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6336aa1293c73d870f35be3740f91e46/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6aafe88d9e4299073e93121f23c108f5/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
@@ -92,13 +92,25 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/nidhisharma/.gradle/c
 		INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:2:11-69
-uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:4:5-78
+queries
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:4:5-9:15
+intent#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:5:9-8:18
+action#android.intent.action.MAIN
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:13-65
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:4:22-75
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:21-62
+category#android.intent.category.LAUNCHER
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:13-73
+	android:name
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:23-70
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:11:5-78
+	android:name
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:11:22-75
 application
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:5-45:19
-INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:5-45:19
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:13:5-52:19
+INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:13:5-52:19
 MERGED from [com.google.android.material:material:1.12.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f9b7a3df76272549aaad5c9c89f4b022/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/f9b7a3df76272549aaad5c9c89f4b022/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6336aa1293c73d870f35be3740f91e46/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -124,75 +136,67 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/nidhisharma/.gradle/
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/bde4baa850aa9162317e26231cb99e3b/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:9:9-35
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:16:9-35
 	android:label
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:10:9-41
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:17:9-41
 	android:roundIcon
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:12:9-54
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:19:9-54
 	android:icon
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:11:9-43
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:18:9-43
 	android:allowBackup
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:8:9-35
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:15:9-35
 	android:theme
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:13:9-46
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:20:9-46
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:9-44
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:14:9-44
 activity#com.unscroll.app.MainActivity
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:14:9-23:20
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:21:9-30:20
 	android:launchMode
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:17:13-44
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:24:13-44
 	android:exported
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:16:13-36
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:23:13-36
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:15:13-41
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:22:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:18:13-22:29
-action#android.intent.action.MAIN
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:19:17-69
-	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:19:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:21:17-77
-	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:21:27-74
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:25:13-29:29
 activity#com.unscroll.app.ui.BlockOverlayActivity
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:24:9-32:43
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:31:9-39:43
 	android:turnScreenOn
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:32:13-40
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:39:13-40
 	android:excludeFromRecents
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:27:13-46
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:34:13-46
 	android:launchMode
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:30:13-44
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:37:13-44
 	android:exported
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:26:13-37
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:33:13-37
 	android:showOnLockScreen
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:31:13-44
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:38:13-44
 	android:theme
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:28:13-50
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:35:13-50
 	android:taskAffinity
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:29:13-36
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:36:13-36
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:25:13-52
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:32:13-52
 service#com.unscroll.app.service.AppBlockService
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:34:9-44:19
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:41:9-51:19
 	android:exported
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:36:13-37
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:43:13-37
 	android:permission
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:37:13-79
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:44:13-79
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:35:13-52
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:42:13-52
 intent-filter#action:name:android.accessibilityservice.AccessibilityService
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:38:13-40:29
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:45:13-47:29
 action#android.accessibilityservice.AccessibilityService
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:39:17-92
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:46:17-92
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:39:25-89
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:46:25-89
 meta-data#android.accessibilityservice
-ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:41:13-43:70
+ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:48:13-50:70
 	android:resource
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:43:17-67
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:50:17-67
 	android:name
-		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:42:17-60
+		ADDED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:49:17-60
 uses-sdk
 INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml
