@@ -14,6 +14,7 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlinx.datetime.minus
 
 class ObserveDashboardStateUseCase(
     private val watchedAppRepository: WatchedAppRepository,
