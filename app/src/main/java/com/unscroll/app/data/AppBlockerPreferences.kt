@@ -1,6 +1,7 @@
 package com.unscroll.app.data
 
 import android.content.Context
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
@@ -16,6 +17,8 @@ private val BLOCKED_PACKAGES_KEY = stringSetPreferencesKey("blocked_packages")
 private val TEMP_ALLOWANCES_KEY = stringSetPreferencesKey("temporary_allowances")
 private val ACTIVATION_LOCKS_KEY = stringSetPreferencesKey("activation_locks")
 private const val LEGACY_GRACE_WINDOW_MILLIS = 5 * 60_000L
+private val LANDING_COMPLETED_KEY = booleanPreferencesKey("landing_completed")
+private val LAST_DISABLED_KEY = stringSetPreferencesKey("last_disabled_timestamps")
 
 data class ActivationLockEntry(
     val lockUntilMillis: Long,
@@ -101,6 +104,43 @@ class AppBlockerPreferences(private val context: Context) {
                 ?: emptyMap()
         }
 
+    val lastDisabled: Flow<Map<String, Long>> = context.blockerDataStore
+        .data
+        .catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            preferences[LAST_DISABLED_KEY]
+                ?.mapNotNull { entry ->
+                    val parts = entry.split("|")
+                    if (parts.size == 2) {
+                        val time = parts[1].toLongOrNull()
+                        if (time != null) parts[0] to time else null
+                    } else {
+                        null
+                    }
+                }
+                ?.toMap()
+                ?: emptyMap()
+        }
+
+    val landingCompleted: Flow<Boolean> = context.blockerDataStore
+        .data
+        .catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }
+        .map { preferences ->
+            preferences[LANDING_COMPLETED_KEY] ?: false
+        }
+
     suspend fun setBlocked(packageName: String, blocked: Boolean) {
         context.blockerDataStore.edit { preferences ->
             val current = preferences[BLOCKED_PACKAGES_KEY]?.toMutableSet() ?: mutableSetOf()
@@ -145,6 +185,21 @@ class AppBlockerPreferences(private val context: Context) {
             val entries = preferences[ACTIVATION_LOCKS_KEY]?.toMutableSet() ?: mutableSetOf()
             entries.removeAll { it.startsWith("$packageName|") }
             preferences[ACTIVATION_LOCKS_KEY] = entries
+        }
+    }
+
+    suspend fun setLastDisabled(packageName: String, timestamp: Long) {
+        context.blockerDataStore.edit { preferences ->
+            val entries = preferences[LAST_DISABLED_KEY]?.toMutableSet() ?: mutableSetOf()
+            entries.removeAll { it.startsWith("$packageName|") }
+            entries.add("$packageName|$timestamp")
+            preferences[LAST_DISABLED_KEY] = entries
+        }
+    }
+
+    suspend fun markLandingCompleted() {
+        context.blockerDataStore.edit { preferences ->
+            preferences[LANDING_COMPLETED_KEY] = true
         }
     }
 }

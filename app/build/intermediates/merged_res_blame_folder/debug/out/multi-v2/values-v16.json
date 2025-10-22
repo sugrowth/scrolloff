@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/dc49e435c42c3d5a8d9db91f6b7cc294/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}

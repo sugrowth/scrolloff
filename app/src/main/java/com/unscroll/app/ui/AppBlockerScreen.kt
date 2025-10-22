@@ -6,6 +6,7 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +28,6 @@ import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
@@ -39,10 +39,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +52,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -64,6 +65,7 @@ import com.unscroll.app.viewmodel.AppCategory
 import com.unscroll.app.viewmodel.AppToggle
 import com.unscroll.app.viewmodel.AppUiEvent
 import com.unscroll.app.viewmodel.AppViewModel
+import kotlinx.coroutines.delay
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -116,8 +118,8 @@ fun AppBlockerScreen(
 
     val gradient = Brush.verticalGradient(
         colors = listOf(
-            MaterialTheme.colorScheme.primary.copy(alpha = 0.92f),
-            MaterialTheme.colorScheme.surface
+            Color(0xFF050505),
+                Color(0xFF0F0F0F)
         )
     )
     val permissionsSatisfied = uiState.overlayGranted && uiState.accessibilityGranted
@@ -129,22 +131,7 @@ fun AppBlockerScreen(
     ) {
         Scaffold(
             containerColor = Color.Transparent,
-            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-            topBar = {
-                CenterAlignedTopAppBar(
-                    title = {
-                        Text(
-                            text = "Unscroll Blocker",
-                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
-                            color = Color.White
-                        )
-                    },
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = Color.Transparent,
-                        titleContentColor = Color.White
-                    )
-                )
-            }
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
         ) { paddingValues ->
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
@@ -181,13 +168,21 @@ fun AppBlockerScreen(
                 }
 
                 item {
-                    Text(
-                        text = "Protected apps by priority",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text(
+                            text = "Protected apps by priority",
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                color = Color.White,
+                                fontWeight = FontWeight.SemiBold
+                            )
                         )
-                    )
+                        Text(
+                            text = "Select all the apps that don't let you focus.",
+                            style = MaterialTheme.typography.bodySmall.copy(
+                                color = Color.White.copy(alpha = 0.75f)
+                            )
+                        )
+                    }
                 }
 
                 if (uiState.isLoading) {
@@ -221,7 +216,15 @@ fun AppBlockerScreen(
                     }
                 }
 
+                item { RewardCard(uiState.rewardMinutes) }
                 item { AboutCard() }
+            } else {
+                Text(
+                    text = "Set custom lock durations and instant unlocks with Unscroll Pro.",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                )
             }
         }
     }
@@ -244,80 +247,53 @@ private fun LandingScreen(
         "Win your focus back, one unlock at a time."
     )
 
+    val selectedMessage = remember { messages.random() }
+    val dismissed = remember { mutableStateOf(false) }
+
+    fun proceed() {
+        if (!dismissed.value) {
+            dismissed.value = true
+            onContinue()
+        }
+    }
+
+    LaunchedEffect(selectedMessage) {
+        delay(10_000)
+        proceed()
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(gradient)
+            .clickable { proceed() }
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 32.dp, vertical = 48.dp),
+            modifier = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            Surface(
+                modifier = Modifier.size(112.dp),
+                shape = CircleShape,
+                color = Color.White.copy(alpha = 0.12f)
             ) {
-                Surface(
-                    modifier = Modifier
-                        .width(96.dp)
-                        .height(96.dp),
-                    shape = CircleShape,
-                    color = Color.White.copy(alpha = 0.08f)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                        contentDescription = "Unscroll",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.padding(16.dp)
-                    )
-                }
-                Text(
-                    text = "Give yourself more time",
-                    style = MaterialTheme.typography.headlineMedium.copy(
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = "Unscroll helps intercept reflex opens so focus feels natural again.",
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        color = Color.White.copy(alpha = 0.8f)
-                    ),
-                    textAlign = TextAlign.Center
+                Image(
+                    painter = painterResource(id = R.drawable.ic_hourglass_logo),
+                    contentDescription = "Unscroll",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.padding(20.dp)
                 )
             }
-
-            Column(
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                messages.forEach { message ->
-                    Text(
-                        text = "• $message",
-                        style = MaterialTheme.typography.bodyMedium.copy(color = Color.White.copy(alpha = 0.85f))
-                    )
-                }
-            }
-
-            FilledTonalButton(
-                onClick = onContinue,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black
+            Text(
+                text = selectedMessage,
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    color = Color.White,
+                    fontStyle = FontStyle.Italic,
+                    fontWeight = FontWeight.SemiBold
                 ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = CircleShape
-            ) {
-                Text(
-                    text = "Start winning back focus",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
-                )
-            }
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
@@ -436,6 +412,43 @@ private fun LoadingCard() {
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
+        }
+    }
+}
+
+@Composable
+private fun RewardCard(rewardMinutes: Int) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.95f)
+        ),
+        shape = RoundedCornerShape(24.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text(
+                text = "Earned unlock minutes",
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
+            )
+            Text(
+                text = "Stay off your watched apps for an hour to earn a 5-minute reward. Spend it on any locked app.",
+                style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+            )
+            Text(
+                text = "$rewardMinutes min available",
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
+            )
+            Text(
+                text = if (rewardMinutes >= 5) "Open a blocked app and tap 'Use reward' to spend minutes." else "Earn 5 minutes to unlock once without credits.",
+                style = MaterialTheme.typography.bodySmall.copy(
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            )
         }
     }
 }
@@ -596,14 +609,21 @@ private fun AppRow(
                     }
                 }
 
+                val switchColors = SwitchDefaults.colors(
+                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                    checkedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.35f),
+                    uncheckedThumbColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f),
+                    disabledCheckedThumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
+                    disabledCheckedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                    disabledUncheckedThumbColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f),
+                    disabledUncheckedTrackColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.12f)
+                )
                 Switch(
                     checked = toggle.isBlocked,
                     onCheckedChange = onToggle,
                     enabled = switchEnabled,
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = MaterialTheme.colorScheme.primary,
-                        checkedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.35f)
-                    )
+                    colors = switchColors
                 )
             }
 
@@ -663,6 +683,13 @@ private fun AppRow(
                         )
                     )
                 }
+            } else {
+                Text(
+                    text = "Custom lock duration with Unscroll Pro.",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                )
             }
         }
     }

@@ -1,0 +1,202 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.unscroll.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0-mvp" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <queries>
+11-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:4:5-9:15
+12        <intent>
+12-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:5:9-8:18
+13            <action android:name="android.intent.action.MAIN" />
+13-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:13-65
+13-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:21-62
+14
+15            <category android:name="android.intent.category.LAUNCHER" />
+15-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:13-73
+15-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:23-70
+16        </intent>
+17    </queries>
+18
+19    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+19-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:11:5-78
+19-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:11:22-75
+20
+21    <permission
+21-->[androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b5802fe5ef15e321a049ee5dff290929/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+22        android:name="com.unscroll.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+22-->[androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b5802fe5ef15e321a049ee5dff290929/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+23        android:protectionLevel="signature" />
+23-->[androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b5802fe5ef15e321a049ee5dff290929/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+24
+25    <uses-permission android:name="com.unscroll.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+25-->[androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b5802fe5ef15e321a049ee5dff290929/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+25-->[androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b5802fe5ef15e321a049ee5dff290929/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+26
+27    <application
+27-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:13:5-52:19
+28        android:name="com.unscroll.app.UnscrollApplication"
+28-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:14:9-44
+29        android:allowBackup="true"
+29-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:15:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.13.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/b5802fe5ef15e321a049ee5dff290929/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+31        android:debuggable="true"
+32        android:extractNativeLibs="false"
+33        android:icon="@mipmap/ic_launcher"
+33-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:18:9-43
+34        android:label="@string/app_name"
+34-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:17:9-41
+35        android:roundIcon="@mipmap/ic_launcher_round"
+35-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:19:9-54
+36        android:supportsRtl="true"
+36-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:16:9-35
+37        android:testOnly="true"
+38        android:theme="@style/Theme.Unscroll" >
+38-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:20:9-46
+39        <activity
+39-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:21:9-30:20
+40            android:name="com.unscroll.app.MainActivity"
+40-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:22:13-41
+41            android:exported="true"
+41-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:23:13-36
+42            android:launchMode="singleTask" >
+42-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:24:13-44
+43            <intent-filter>
+43-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:25:13-29:29
+44                <action android:name="android.intent.action.MAIN" />
+44-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:13-65
+44-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:6:21-62
+45
+46                <category android:name="android.intent.category.LAUNCHER" />
+46-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:13-73
+46-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:7:23-70
+47            </intent-filter>
+48        </activity>
+49        <activity
+49-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:31:9-39:43
+50            android:name="com.unscroll.app.ui.BlockOverlayActivity"
+50-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:32:13-52
+51            android:excludeFromRecents="true"
+51-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:34:13-46
+52            android:exported="false"
+52-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:33:13-37
+53            android:launchMode="singleTask"
+53-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:37:13-44
+54            android:showOnLockScreen="true"
+54-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:38:13-44
+55            android:taskAffinity=""
+55-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:36:13-36
+56            android:theme="@style/Theme.Unscroll"
+56-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:35:13-50
+57            android:turnScreenOn="true" />
+57-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:39:13-40
+58
+59        <service
+59-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:41:9-51:19
+60            android:name="com.unscroll.app.service.AppBlockService"
+60-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:42:13-52
+61            android:exported="false"
+61-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:43:13-37
+62            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+62-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:44:13-79
+63            <intent-filter>
+63-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:45:13-47:29
+64                <action android:name="android.accessibilityservice.AccessibilityService" />
+64-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:46:17-92
+64-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:46:25-89
+65            </intent-filter>
+66
+67            <meta-data
+67-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:48:13-50:70
+68                android:name="android.accessibilityservice"
+68-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:49:17-60
+69                android:resource="@xml/app_blocker_service_config" />
+69-->/Users/nidhisharma/Documents/Karan/Unscroll/Unscroll/app/src/main/AndroidManifest.xml:50:17-67
+70        </service>
+71
+72        <activity
+72-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/1953265a0c14072a0e66cdbe671e615d/transformed/jetified-ui-tooling-release/AndroidManifest.xml:23:9-25:39
+73            android:name="androidx.compose.ui.tooling.PreviewActivity"
+73-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/1953265a0c14072a0e66cdbe671e615d/transformed/jetified-ui-tooling-release/AndroidManifest.xml:24:13-71
+74            android:exported="true" />
+74-->[androidx.compose.ui:ui-tooling-android:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/1953265a0c14072a0e66cdbe671e615d/transformed/jetified-ui-tooling-release/AndroidManifest.xml:25:13-36
+75        <activity
+75-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/8395f64b1a9fc550dd3a7ba96563a25d/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:23:9-25:39
+76            android:name="androidx.activity.ComponentActivity"
+76-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/8395f64b1a9fc550dd3a7ba96563a25d/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:24:13-63
+77            android:exported="true" />
+77-->[androidx.compose.ui:ui-test-manifest:1.6.8] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/8395f64b1a9fc550dd3a7ba96563a25d/transformed/jetified-ui-test-manifest-1.6.8/AndroidManifest.xml:25:13-36
+78
+79        <provider
+79-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+80            android:name="androidx.startup.InitializationProvider"
+80-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+81            android:authorities="com.unscroll.app.androidx-startup"
+81-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+82            android:exported="false" >
+82-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+83            <meta-data
+83-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+84                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+84-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+85                android:value="androidx.startup" />
+85-->[androidx.emoji2:emoji2:1.3.0] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/6032434f7ceeba66498aec7de9c0d80d/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+86            <meta-data
+86-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/adbe55cd0d388faac231848d8c60c6e0/transformed/jetified-lifecycle-process-2.8.3/AndroidManifest.xml:29:13-31:52
+87                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+87-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/adbe55cd0d388faac231848d8c60c6e0/transformed/jetified-lifecycle-process-2.8.3/AndroidManifest.xml:30:17-78
+88                android:value="androidx.startup" />
+88-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/adbe55cd0d388faac231848d8c60c6e0/transformed/jetified-lifecycle-process-2.8.3/AndroidManifest.xml:31:17-49
+89            <meta-data
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+90                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+91                android:value="androidx.startup" />
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+92        </provider>
+93
+94        <receiver
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+95            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+96            android:directBootAware="false"
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+97            android:enabled="true"
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+98            android:exported="true"
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+99            android:permission="android.permission.DUMP" >
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+100            <intent-filter>
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+101                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+102            </intent-filter>
+103            <intent-filter>
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+104                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+105            </intent-filter>
+106            <intent-filter>
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+107                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+108            </intent-filter>
+109            <intent-filter>
+109-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+110                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+110-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/nidhisharma/.gradle/caches/9.0-milestone-1/transforms/5f2dfe494ec12776d37db49075ab7ab4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+111            </intent-filter>
+112        </receiver>
+113    </application>
+114
+115</manifest>
