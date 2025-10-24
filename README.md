@@ -1,6 +1,6 @@
-# Unscroll MVP v2.0
+# ScrollOff MVP v2.0
 
-Android-first implementation of the Unscroll "Break the Reflex Loop" MVP described in `project.md`. The app demonstrates the interception, credit reward, focus, and insight flows defined in the PRD and is structured so the core logic can later be shared with iOS via Kotlin Multiplatform.
+Android-first implementation of the ScrollOff "Break the Reflex Loop" MVP described in `project.md`. The app demonstrates the interception, credit reward, focus, and insight flows defined in the PRD and is structured so the core logic can later be shared with iOS via Kotlin Multiplatform.
 
 ## Project structure
 
