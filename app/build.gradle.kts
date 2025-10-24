@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.unscroll.app"
+    namespace = "com.scrolloff.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.unscroll.app"
+        applicationId = "com.scrolloff.app"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Unscroll"
+rootProject.name = "ScrollOff"
 include(":app")
 include(":shared")

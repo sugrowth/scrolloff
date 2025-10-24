@@ -39,7 +39,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.unscroll.shared"
+    namespace = "com.scrolloff.shared"
     compileSdk = 34
 
     defaultConfig {
