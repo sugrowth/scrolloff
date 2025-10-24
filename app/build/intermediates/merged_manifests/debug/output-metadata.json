@@ -4,7 +4,7 @@
     "type": "MERGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.unscroll.app",
+  "applicationId": "com.scrolloff.app",
   "variantName": "debug",
   "elements": [
     {

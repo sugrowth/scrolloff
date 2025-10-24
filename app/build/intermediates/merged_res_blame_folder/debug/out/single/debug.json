@@ -1,30 +1,30 @@
 [
     {
-        "merged": "com.unscroll.app-merged_res-68:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.unscroll.app-main-70:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.scrolloff.app-main-70:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.unscroll.app-merged_res-68:/mipmap_ic_launcher_round.xml.flat",
-        "source": "com.unscroll.app-main-70:/mipmap/ic_launcher_round.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/mipmap_ic_launcher.xml.flat",
+        "source": "com.scrolloff.app-main-70:/mipmap/ic_launcher.xml"
     },
     {
-        "merged": "com.unscroll.app-merged_res-68:/xml_app_blocker_service_config.xml.flat",
-        "source": "com.unscroll.app-main-70:/xml/app_blocker_service_config.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.scrolloff.app-main-70:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.unscroll.app-merged_res-68:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.unscroll.app-main-70:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/drawable_ic_hourglass_logo.xml.flat",
+        "source": "com.scrolloff.app-main-70:/drawable/ic_hourglass_logo.xml"
     },
     {
-        "merged": "com.unscroll.app-merged_res-68:/mipmap_ic_launcher.xml.flat",
-        "source": "com.unscroll.app-main-70:/mipmap/ic_launcher.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.scrolloff.app-main-70:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.unscroll.app-merged_res-68:/drawable_ic_hourglass_logo.xml.flat",
-        "source": "com.unscroll.app-main-70:/drawable/ic_hourglass_logo.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/xml_app_blocker_service_config.xml.flat",
+        "source": "com.scrolloff.app-main-70:/xml/app_blocker_service_config.xml"
     },
     {
-        "merged": "com.unscroll.app-merged_res-68:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.unscroll.app-main-70:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.scrolloff.app-merged_res-68:/mipmap_ic_launcher_round.xml.flat",
+        "source": "com.scrolloff.app-main-70:/mipmap/ic_launcher_round.xml"
     }
 ]

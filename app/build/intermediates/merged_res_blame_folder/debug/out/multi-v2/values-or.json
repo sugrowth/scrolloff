@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-or/values-or.xml",
+            "outputFile": "com.scrolloff.app-mergeDebugResources-66:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/transforms-3/9737ade4a166d4d35ea224d8143fa922/transformed/jetified-foundation-release/res/values-or/values-or.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-gl/values-gl.xml",
+            "outputFile": "com.scrolloff.app-mergeDebugResources-66:/values-gl/values-gl.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/transforms-3/9be5019ad47c2d66bf315b87565decb6/transformed/jetified-ui-release/res/values-gl/values-gl.xml",

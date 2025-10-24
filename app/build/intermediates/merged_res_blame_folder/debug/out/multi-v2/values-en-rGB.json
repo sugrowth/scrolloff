@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.unscroll.app-mergeDebugResources-66:/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "com.scrolloff.app-mergeDebugResources-66:/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
                     "source": "/Users/nidhisharma/.gradle/caches/transforms-3/5d00cd0a39713e1f9ac94ae4acccf77a/transformed/appcompat-1.6.1/res/values-en-rGB/values-en-rGB.xml",

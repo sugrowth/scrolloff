@@ -6,5 +6,5 @@ drawable ic_launcher_foreground
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
-style Theme.Unscroll
+style Theme.ScrollOff
 xml app_blocker_service_config

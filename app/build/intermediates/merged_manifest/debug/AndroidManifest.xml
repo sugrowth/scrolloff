@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.unscroll.app"
+    package="com.scrolloff.app"
     android:versionCode="1"
     android:versionName="1.0.0-mvp" >
 
@@ -19,13 +19,13 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <permission
-        android:name="com.unscroll.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.scrolloff.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.unscroll.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.scrolloff.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
-        android:name="com.unscroll.app.UnscrollApplication"
+        android:name="com.scrolloff.app.ScrollOffApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
@@ -35,9 +35,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.Unscroll" >
+        android:theme="@style/Theme.ScrollOff" >
         <activity
-            android:name="com.unscroll.app.MainActivity"
+            android:name="com.scrolloff.app.MainActivity"
             android:exported="true"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -47,17 +47,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.unscroll.app.ui.BlockOverlayActivity"
+            android:name="com.scrolloff.app.ui.BlockOverlayActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"
             android:showOnLockScreen="true"
             android:taskAffinity=""
-            android:theme="@style/Theme.Unscroll"
+            android:theme="@style/Theme.ScrollOff"
             android:turnScreenOn="true" />
 
         <service
-            android:name="com.unscroll.app.service.AppBlockService"
+            android:name="com.scrolloff.app.service.AppBlockService"
             android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
             <intent-filter>
@@ -78,7 +78,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.unscroll.app.androidx-startup"
+            android:authorities="com.scrolloff.app.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
