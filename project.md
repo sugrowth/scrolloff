@@ -1,5 +1,5 @@
 # Product Requirements Document (PRD)
-**Product:** Unscroll — Break the Reflex Loop  
+**Product:** ScrollOff — Break the Reflex Loop  
 **Version:** MVP v2.0 (Enhanced with Behavioral Intelligence)  
 **Date:** October 19, 2025 (America/Toronto)  
 **Owner:** You (Founder)  
@@ -8,7 +8,7 @@
 ---
 
 ## 0. Executive Summary
-Unscroll eliminates mindless doomscrolling by **intercepting reflex app opens** and **rewarding real-world focus** with limited "scroll windows." Users mark distraction apps (e.g., Instagram, YouTube, TikTok, etc.), which remain **locked by default.** They **earn credits** by staying scroll-free or completing short focus sessions; these credits unlock distraction apps for a fixed duration before auto-locking again.
+ScrollOff eliminates mindless doomscrolling by **intercepting reflex app opens** and **rewarding real-world focus** with limited "scroll windows." Users mark distraction apps (e.g., Instagram, YouTube, TikTok, etc.), which remain **locked by default.** They **earn credits** by staying scroll-free or completing short focus sessions; these credits unlock distraction apps for a fixed duration before auto-locking again.
 
 **What's New in v2.0:**
 - **Intelligent notification handling** prevents users from missing important messages
@@ -34,7 +34,7 @@ A reliable, battery-friendly app that:
 ### 1.1 Problem
 People reflexively open "scroll apps" dozens of times a day — not by choice, but by habit. Existing blockers either over-restrict (causing frustration) or require manual activation (which users forget). They also fail to account for legitimate notifications and context, leading to abandonment.
 
-Unscroll bridges the gap by combining **behavioral awareness** with **reward-based discipline** while respecting the user's real-world needs.
+ScrollOff bridges the gap by combining **behavioral awareness** with **reward-based discipline** while respecting the user's real-world needs.
 
 ### 1.2 Goals (MVP v2.0)
 - **G1:** Reduce reflex app opens by **≥50%** within 14 days.
@@ -789,7 +789,7 @@ app/
 │   ├── local/
 │   │   ├── dao/
 │   │   ├── entities/
-│   │   └── UnscrollDatabase.kt
+│   │   └── ScrollOffDatabase.kt
 │   ├── services/
 │   │   ├── InterceptAccessibilityService.kt
 │   │   ├── NotificationListenerService.kt
@@ -849,7 +849,7 @@ app/
 ### 18.3 iOS Architecture (Phase 2)
 
 ```
-Unscroll-iOS/
+ScrollOff-iOS/
 ├── Views/
 │   ├── Onboarding/
 │   ├── Home/
@@ -862,7 +862,7 @@ Unscroll-iOS/
 │   ├── ShieldActionHandler.swift
 │   └── NotificationHandler.swift
 ├── Shared/  (KMM framework)
-│   └── UnscrollCore.framework
+│   └── ScrollOffCore.framework
 └── Models/
 ```
 
@@ -1065,14 +1065,14 @@ Trigger notification if new insight found
 - How do credits work?
 - Why did my app unlock automatically?
 - How do I handle emergencies?
-- Can I temporarily disable Unscroll?
+- Can I temporarily disable ScrollOff?
 - How do I add/remove watched apps?
 - What happens to my data if I uninstall?
 
 ### 24.3 Support Channels
 - In-app feedback form (attaches logs if user consents)
-- Email: support@unscroll.app
-- FAQ website: help.unscroll.app
+- Email: support@scrolloff.app
+- FAQ website: help.scrolloff.app
 - Pro users: Priority response within 24 hours
 
 ---
@@ -1081,8 +1081,8 @@ Trigger notification if new insight found
 
 ### Pre-Launch (4 Weeks Before)
 - [ ] Play Store listing prepared (screenshots, video, description)
-- [ ] Privacy policy published at unscroll.app/privacy
-- [ ] Terms of service published at unscroll.app/terms
+- [ ] Privacy policy published at scrolloff.app/privacy
+- [ ] Terms of service published at scrolloff.app/terms
 - [ ] Beta testing group recruited (50+ users across 5+ device models)
 - [ ] Press kit prepared (logo assets, founder bio, demo video)
 - [ ] Analytics dashboard set up (local-only, privacy-compliant)
@@ -1147,7 +1147,7 @@ Trigger notification if new insight found
 
 | Term | Definition |
 |------|------------|
-| **Watched App** | An app selected by the user to be controlled by Unscroll |
+| **Watched App** | An app selected by the user to be controlled by ScrollOff |
 | **Intercept** | The overlay/shield shown when launching a watched app |
 | **Credit** | Time currency earned by staying focused; 1 credit = 1 second of unlock time |
 | **Unlock Window** | Time period when all watched apps are freely accessible |
@@ -1165,7 +1165,7 @@ Trigger notification if new insight found
 ## 28. Appendix: Example User Journeys
 
 ### Journey 1: New User - First Day
-1. Downloads Unscroll from Play Store
+1. Downloads ScrollOff from Play Store
 2. Onboarding: Grants accessibility + overlay permissions
 3. Selects 5 watched apps (Instagram, TikTok, YouTube, Twitter, Reddit)
 4. Sets 2 apps as notification-safe (Instagram, Twitter)

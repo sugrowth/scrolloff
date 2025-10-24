@@ -94,7 +94,7 @@ fun AppBlockerScreen(
                 }
                 is AppUiEvent.ToggleLocked -> {
                     snackbarHostState.showSnackbar(
-                        message = "${event.appLabel} is locked until ${formatTime(event.unlockAtMillis)}. Early unlock requires Unscroll Pro."
+                        message = "${event.appLabel} is locked until ${formatTime(event.unlockAtMillis)}. Early unlock requires ScrollOff Pro."
                     )
                 }
                 is AppUiEvent.ShowPaywall -> {
@@ -273,7 +273,7 @@ private fun LandingScreen(
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_hourglass_logo),
-                    contentDescription = "Unscroll",
+                    contentDescription = "ScrollOff",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.padding(20.dp)
                 )
@@ -312,7 +312,7 @@ private fun PermissionCard(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
-                text = "Turn on both permissions so Unscroll can pause distraction apps.",
+                text = "Turn on both permissions so ScrollOff can pause distraction apps.",
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
             )
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -383,7 +383,7 @@ private fun InfoCard() {
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
             )
             Text(
-                text = "Need to turn something off sooner? You have a 5-minute grace window after enabling. Beyond that, early unlock will require the upcoming Unscroll Pro upgrade.",
+                text = "Need to turn something off sooner? You have a 5-minute grace window after enabling. Beyond that, early unlock will require the upcoming ScrollOff Pro upgrade.",
                 style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
             )
         }
@@ -466,7 +466,7 @@ private fun EmptyStateCard() {
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
             )
             Text(
-                text = "Toggle any app to place it under Unscroll’s care.",
+                text = "Toggle any app to place it under ScrollOff’s care.",
                 style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
             )
         }
@@ -678,7 +678,7 @@ private fun AppRow(
                 }
             } else {
                 Text(
-                    text = "Custom lock duration with Unscroll Pro.",
+                    text = "Custom lock duration with ScrollOff Pro.",
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -704,11 +704,11 @@ private fun AboutCard() {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "About Unscroll",
+                text = "About ScrollOff",
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
             )
             Text(
-                text = "Unscroll disrupts reflex opens and rewards real-world focus. Earn minutes by staying present, trade them for intentional unlocks, and let the app handle graceful relocks.",
+                text = "ScrollOff disrupts reflex opens and rewards real-world focus. Earn minutes by staying present, trade them for intentional unlocks, and let the app handle graceful relocks.",
                 style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
             )
             Text(

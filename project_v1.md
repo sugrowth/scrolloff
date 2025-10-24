@@ -1,7 +1,7 @@
-# Unscroll – Project Snapshot (v1)
+# ScrollOff – Project Snapshot (v1)
 
 ## Overview
-Unscroll interrupts reflexive app opens, awards intentional unlocks, and keeps distraction-heavy apps behind an adaptive overlay. The Android MVP is built with Jetpack Compose, Kotlin, and an accessibility-based intercept service that remains Play Store–compliant.
+ScrollOff interrupts reflexive app opens, awards intentional unlocks, and keeps distraction-heavy apps behind an adaptive overlay. The Android MVP is built with Jetpack Compose, Kotlin, and an accessibility-based intercept service that remains Play Store–compliant.
 
 ## Core Loop
 - Surface every launchable app and let users toggle protections.  
